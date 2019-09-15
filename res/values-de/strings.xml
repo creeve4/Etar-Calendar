@@ -23,7 +23,9 @@
     <string name="tomorrow" msgid="614434811813859237">"Morgen"</string>
     <string name="today_at_time_fmt" msgid="1981279213130049736">"Heute, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="tomorrow_at_time_fmt" msgid="1330779112841767432">"Morgen, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
-    <string name="date_time_fmt" msgid="1642972650061946484">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
+    <string name="date_time_fmt" msgid="1642972650061946484">
+        <xliff:g id="date">%1$s</xliff:g>, <xliff:g id="time_interval">%2$s</xliff:g>
+    </string>
     <string name="repeats_label" msgid="7414023871434593196">"Wiederholung"</string>
     <string name="no_title_label" msgid="302177118061368042">"(Kein Titel)"</string>
     <plurals name="Nminutes">
@@ -324,8 +326,9 @@
     <string name="view_details">Details anzeigen</string>
     <string name="display_time">Zeit anzeigen</string>
     <string name="display_location">Ort anzeigen</string>
-    <string name="show_time_no">Nein</string>
+    <string name="show_time_no">Zeit nicht anzeigen</string>
     <string name="show_time_start">Nur Startzeit</string>
     <string name="show_time_start_end">Start- und Endzeit</string>
     <string name="show_time_start_end_below">Start- und Endzeit unterhalb des Termins</string>
+    <string name="maximum_number_of_lines">Maximale Zeilenanzahl pro Kalendereintrag</string>
 </resources>

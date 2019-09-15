@@ -17,11 +17,6 @@
 package com.android.calendar;
 
 import android.Manifest;
-import android.accounts.AccountManager;
-import android.accounts.AccountManagerCallback;
-import android.accounts.AccountManagerFuture;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.animation.ObjectAnimator;
@@ -42,7 +37,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
-import android.database.Cursor;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -52,17 +46,16 @@ import android.os.Handler;
 import android.preference.PreferenceActivity;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Attendees;
-import android.provider.CalendarContract.Calendars;
 import android.provider.CalendarContract.Events;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
@@ -91,7 +84,6 @@ import com.android.calendar.selectcalendars.SelectVisibleCalendarsFragment;
 import com.android.datetimepicker.date.DatePickerDialog;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -112,7 +104,6 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
     private static final String BUNDLE_KEY_RESTORE_TIME = "key_restore_time";
     private static final String BUNDLE_KEY_EVENT_ID = "key_event_id";
     private static final String BUNDLE_KEY_RESTORE_VIEW = "key_restore_view";
-    private static final String BUNDLE_KEY_CHECK_ACCOUNTS = "key_check_for_accounts";
     private static final int HANDLER_KEY = 0;
     private static final int PERMISSIONS_REQUEST_WRITE_CALENDAR = 0;
 
@@ -229,7 +220,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
             Utils.setMidnightUpdater(mHandler, mTimeChangesUpdater, mTimeZone);
         }
     };
-    private boolean mCheckForAccounts = true;
+
     private String mHideString;
     private String mShowString;
     // Params for animating the controls on the right
@@ -266,20 +257,6 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
         }
         super.onCreate(icicle);
         dynamicTheme.onCreate(this);
-
-        if (icicle != null && icicle.containsKey(BUNDLE_KEY_CHECK_ACCOUNTS)) {
-            mCheckForAccounts = icicle.getBoolean(BUNDLE_KEY_CHECK_ACCOUNTS);
-        }
-        // Launch add google account if this is first time and there are no
-        // accounts yet
-        if (mCheckForAccounts
-                && !Utils.getSharedPreference(this, GeneralPreferences.KEY_SKIP_SETUP, false)) {
-
-            mHandler = new QueryHandler(this.getContentResolver());
-            mHandler.startQuery(0, null, Calendars.CONTENT_URI, new String[]{
-                    Calendars._ID
-            }, null, null /* selection args */, null /* sort order */);
-        }
 
         // This needs to be created before setContentView
         mController = CalendarController.getInstance(this);
@@ -691,7 +668,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 outState.putLong(BUNDLE_KEY_EVENT_ID, ((AgendaFragment) f).getLastShowEventId());
             }
         }
-        outState.putBoolean(BUNDLE_KEY_CHECK_ACCOUNTS, mCheckForAccounts);
+
     }
 
     @Override
@@ -1475,50 +1452,6 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
     private class QueryHandler extends AsyncQueryHandler {
         public QueryHandler(ContentResolver cr) {
             super(cr);
-        }
-
-        @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-            mCheckForAccounts = false;
-            try {
-                // If the query didn't return a cursor for some reason return
-                if (cursor == null || cursor.getCount() > 0 || isFinishing()) {
-                    return;
-                }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
-            }
-
-            Bundle options = new Bundle();
-            options.putCharSequence("introMessage",
-                    getResources().getString(R.string.create_an_account_desc));
-            options.putBoolean("allowSkip", true);
-
-            AccountManager am = AccountManager.get(AllInOneActivity.this);
-            am.addAccount("com.google", CalendarContract.AUTHORITY, null, options,
-                    AllInOneActivity.this,
-                    new AccountManagerCallback<Bundle>() {
-                        @Override
-                        public void run(AccountManagerFuture<Bundle> future) {
-                            if (future.isCancelled()) {
-                                return;
-                            }
-                            try {
-                                Bundle result = future.getResult();
-                                boolean setupSkipped = result.getBoolean("setupSkipped");
-
-                                if (setupSkipped) {
-                                    Utils.setSharedPreference(AllInOneActivity.this,
-                                            GeneralPreferences.KEY_SKIP_SETUP, true);
-                                }
-
-                            } catch (OperationCanceledException | IOException | AuthenticatorException ignore) {
-                                // The account creation process was canceled
-                            }
-                        }
-                    }, null);
         }
     }
 }

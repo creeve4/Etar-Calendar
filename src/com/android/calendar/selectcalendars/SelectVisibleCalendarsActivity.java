@@ -23,7 +23,7 @@ import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.CalendarContract;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,6 +64,7 @@ public class SelectVisibleCalendarsActivity extends AbstractCalendarActivity {
         dynamicTheme.onCreate(this);
         setContentView(R.layout.simple_frame_layout_material);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         setSupportActionBar(toolbar);
         mController = CalendarController.getInstance(this);
         mFragment = (SelectVisibleCalendarsFragment) getFragmentManager().findFragmentById(
