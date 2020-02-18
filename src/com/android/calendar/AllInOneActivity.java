@@ -940,19 +940,9 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                     mController.sendEvent(this, EventType.GO_TO, null, null, -1, ViewType.DAY);
                 }
                 break;
-            case R.id.week_menu_item:
-                if (mCurrentView != ViewType.WEEK) {
-                    mController.sendEvent(this, EventType.GO_TO, null, null, -1, ViewType.WEEK);
-                }
-                break;
             case R.id.month_menu_item:
                 if (mCurrentView != ViewType.MONTH) {
                     mController.sendEvent(this, EventType.GO_TO, null, null, -1, ViewType.MONTH);
-                }
-                break;
-            case R.id.agenda_menu_item:
-                if (mCurrentView != ViewType.AGENDA) {
-                    mController.sendEvent(this, EventType.GO_TO, null, null, -1, ViewType.AGENDA);
                 }
                 break;
             case R.id.action_select_visible_calendars:
@@ -1037,13 +1027,6 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
         Fragment frag = null;
         Fragment secFrag = null;
         switch (viewType) {
-            case ViewType.AGENDA:
-                mNavigationView.getMenu().findItem(R.id.agenda_menu_item).setChecked(true);
-                frag = new AgendaFragment(timeMillis, false);
-                if (mIsTabletConfig) {
-                    mToolbar.setTitle(R.string.agenda_view);
-                }
-                break;
             case ViewType.DAY:
                 mNavigationView.getMenu().findItem(R.id.day_menu_item).setChecked(true);
                 frag = new DayFragment(timeMillis, 1);
@@ -1052,6 +1035,7 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 }
                 break;
             case ViewType.MONTH:
+            default:
                 mNavigationView.getMenu().findItem(R.id.month_menu_item).setChecked(true);
                 frag = new MonthByWeekFragment(timeMillis, false);
                 if (mShowAgendaWithMonth) {
@@ -1059,14 +1043,6 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 }
                 if (mIsTabletConfig) {
                     mToolbar.setTitle(R.string.month_view);
-                }
-                break;
-            case ViewType.WEEK:
-            default:
-                mNavigationView.getMenu().findItem(R.id.week_menu_item).setChecked(true);
-                frag = new DayFragment(timeMillis, Utils.getDaysPerWeek(this));
-                if (mIsTabletConfig) {
-                    mToolbar.setTitle(R.string.week_view);
                 }
                 break;
         }
