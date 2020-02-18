@@ -21,13 +21,61 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- REPEATS -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dip"
+        android:focusable="true">
+        <TextView
+            android:id="@+id/repeats_label"
+            android:text="@string/repeats_label"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="0dip"
+            style="@style/TextAppearance.EditEvent_LabelSmall" />
+        <Button
+            android:id="@+id/rrule"
+            android:text="@string/does_not_repeat"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="-12dip"
+            android:gravity="start|center_vertical"
+            android:contentDescription="@string/accessibility_pick_recurrence"
+            style="@style/TextAppearance.EditEvent_SpinnerButton" />
+    </LinearLayout>
+
+    <!-- WHERE -->
+    <LinearLayout android:id="@+id/where_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:orientation="vertical">
+		<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				>
+			<AutoCompleteTextView
+				android:id="@+id/location"
+				style="@style/TextAppearance.EditEvent_Value"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="@string/hint_where"
+				android:imeOptions="actionDone"
+				android:inputType="textAutoCorrect|textCapSentences"
+				android:minHeight="48dip"
+				android:singleLine="false" />
+		</com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
     <!-- RESPONSE -->
     <LinearLayout
         android:id="@+id/response_row"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="64dip"
+        android:minHeight="48dip"
         android:focusable="true">
         <TextView
             android:id="@+id/response_label"
@@ -72,8 +120,6 @@
                 style="@style/TextAppearance.EditEvent"
                 android:text="@string/response_no" />
         </RadioGroup>
-        <View
-            style="@style/EditEventSeparator"/>
     </LinearLayout>
 
     <LinearLayout
@@ -94,8 +140,6 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="@style/TextAppearance.EditEvent_Value" />
-        <View
-            style="@style/EditEventSeparator"/>
     </LinearLayout>
 
     <LinearLayout
@@ -111,6 +155,7 @@
 			<com.android.ex.chips.RecipientEditTextView
 				android:id="@+id/attendees"
 				android:layout_marginTop="2dip"
+				android:layout_marginBottom="12dip"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:inputType="textEmailAddress|textMultiLine|textCapWords"
@@ -118,106 +163,6 @@
 				android:imeOptions="actionNext"
 				style="@style/TextAppearance.EditEvent_Value" />
 		</com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <View
-        style="@style/EditEventSeparator"/>
-
-    <!-- DESCRIPTION -->
-    <LinearLayout android:id="@+id/description_row"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dip"
-        android:focusable="true">
-		<com.google.android.material.textfield.TextInputLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				>
-			<EditText
-				android:id="@+id/description"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"
-				android:layout_gravity="bottom"
-				android:minHeight="48dip"
-				android:hint="@string/hint_description"
-				android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-				style="@style/TextAppearance.EditEvent_Value"
-				android:imeOptions="actionDone" />
-		</com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-    <View
-        style="@style/EditEventSeparator"/>
-
-    <!-- REPEATS -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="6dp"
-        android:focusable="true">
-        <TextView
-            android:id="@+id/repeats_label"
-            android:text="@string/repeats_label"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginBottom="0dip"
-            style="@style/TextAppearance.EditEvent_LabelSmall" />
-        <Button
-            android:id="@+id/rrule"
-            android:text="@string/does_not_repeat"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginTop="-12dip"
-            android:gravity="start|center_vertical"
-            android:contentDescription="@string/accessibility_pick_recurrence"
-            style="@style/TextAppearance.EditEvent_SpinnerButton" />
-    </LinearLayout>
-
-    <View
-        style="@style/EditEventSeparator"/>
-
-        <!-- REMINDERS -->
-    <LinearLayout
-        android:id="@+id/reminders_row"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true">
-        <TextView
-            android:id="@+id/reminders_group_label"
-            android:text="@string/event_info_reminders_label"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="0dip"
-            style="@style/TextAppearance.EditEvent_LabelSmall" />
-        <LinearLayout
-            android:id="@+id/reminder_items_container"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_marginTop="-8dip"
-            android:layout_marginBottom="8dip"
-            android:layout_marginEnd="8dip"
-            android:orientation="vertical" />
-        <Button
-            android:id="@+id/reminder_add"
-            android:text="@string/reminders_label"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="top"
-            android:paddingBottom="12dp"
-            android:layout_marginTop="0dip"
-            android:layout_marginBottom="0dip"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textColor="#FF777777"
-            android:minHeight="20dip"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/accessibility_add_reminder"
-            style="@style/TextAppearance.EditEvent_LabelSmall" />
     </LinearLayout>
 
        <!-- PRESENCE - Show me as [busy | available] -->
@@ -266,5 +211,4 @@
             android:contentDescription="@string/accessibility_reminder_privacy"
             android:prompt="@string/privacy_label" />
     </LinearLayout>
-
 </LinearLayout>

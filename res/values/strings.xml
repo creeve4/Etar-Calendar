@@ -15,7 +15,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- This is the app label used for alert notifications -->
-    <string name="standalone_app_label" translatable="false">Etar</string>
+    <string name="standalone_app_label" translatable="false">Calendar</string>
     <!-- This is the label underneath the icon for Calendar -->
     <string name="app_label">Calendar</string>
 
@@ -376,11 +376,11 @@
     <!-- Agenda View strings -->
     <skip/>
     <!-- This is shown as part of the heading at the top of a list of today's events. -->
-    <string name="agenda_today">today, <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="agenda_today">Today</string>
     <!-- This is shown as part of the heading at the top of a list of today's events. -->
-    <string name="agenda_yesterday">yesterday, <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="agenda_yesterday">Yesterday</string>
     <!-- This is shown as part of the heading at the top of a list of today's events. -->
-    <string name="agenda_tomorrow">tomorrow, <xliff:g id="date">%1$s</xliff:g></string>
+    <string name="agenda_tomorrow">Tomorrow</string>
     <!-- This is shown while the calendar events are being loading to the screen. -->
     <string name="loading">Loading\u2026</string>
     <!-- This is shown at the top of the agenda view showing the beginning of the searched range. If the user taps on this string and Calendar will find events older than what is visible and display them to the user -->
@@ -514,7 +514,7 @@
     <!-- This the title of a menu for "About Calendar" Preferences.
          Pressing the menu item lets user to view the current settings
          [CHAR LIMIT=30] -->
-    <string name="menu_about_preferences">About Etar</string>
+    <string name="menu_about_preferences">About</string>
 
     <!-- This is the title of the screen for setting user preferences. -->
     <string name="preferences_title">"Settings"</string>

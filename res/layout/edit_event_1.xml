@@ -24,6 +24,7 @@
         android:id="@+id/calendar_selector_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
         android:focusable="true"
         android:orientation="horizontal">
         <Spinner
@@ -41,13 +42,13 @@
         <ImageButton
             android:id="@+id/change_color_new_event"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="48dip"
-            android:layout_height="48dip"
+            android:layout_width="0dip"
+            android:layout_height="0dip"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dip"
+            android:layout_marginEnd="0dip"
             android:contentDescription="@string/choose_event_color_label"
             android:enabled="false"
-            android:padding="8dip"
+            android:padding="0dip"
             android:scaleType="centerInside"
             android:src="@drawable/ic_menu_colorpicker_dialog"
             android:visibility="invisible" />
@@ -59,8 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:paddingBottom="5dip"
-        android:paddingTop="5dip">
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:layout_marginLeft="0dip"
+        android:layout_marginRight="0dip">
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="wrap_content"
@@ -72,29 +75,25 @@
                 style="@style/TextAppearance.EditEvent_Value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dip"
-                android:layout_marginRight="24dip"
                 android:textColor="#FFFFFFFF" />
             <TextView
                 android:id="@+id/calendar_textview_secondary"
                 style="@style/TextAppearance.EditEvent_Value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dip"
-                android:layout_marginRight="24dip"
                 android:textColor="#FFFFFFFF"
                 android:textSize="14sp" />
         </LinearLayout>
         <ImageButton
             android:id="@+id/change_color_existing_event"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="48dip"
-            android:layout_height="48dip"
+            android:layout_width="0dip"
+            android:layout_height="0dip"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dip"
+            android:layout_marginEnd="0dip"
             android:contentDescription="@string/choose_event_color_label"
             android:enabled="false"
-            android:padding="8dip"
+            android:padding="0dip"
             android:scaleType="centerInside"
             android:src="@drawable/ic_menu_colorpicker_dialog"
             android:visibility="gone"  />
@@ -104,44 +103,42 @@
     <com.google.android.material.textfield.TextInputLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+      android:paddingTop="6dp"
 			>
         <com.google.android.material.textfield.TextInputEditText
 			android:id="@+id/title"
 			style="@style/TextAppearance.EditEvent_Value"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="4dip"
 			android:focusable="true"
 			android:hint="@string/hint_what"
 			android:inputType="textAutoCorrect|textCapSentences"
 			android:minHeight="48dip"
-			android:singleLine="true" />
+			android:singleLine="false" />
 	</com.google.android.material.textfield.TextInputLayout>
 
-    <!-- WHERE -->
-    <LinearLayout android:id="@+id/where_row"
+    <!-- DESCRIPTION -->
+    <LinearLayout android:id="@+id/description_row"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dip"
-        android:focusable="true"
-        android:orientation="vertical">
+        android:layout_marginBottom="12dip"
+        android:focusable="true">
 		<com.google.android.material.textfield.TextInputLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				>
-			<AutoCompleteTextView
-				android:id="@+id/location"
-				style="@style/TextAppearance.EditEvent_Value"
-				android:layout_width="match_parent"
+			<EditText
+				android:id="@+id/description"
 				android:layout_height="wrap_content"
-				android:hint="@string/hint_where"
-				android:imeOptions="actionDone"
-				android:inputType="textAutoCorrect|textCapSentences"
+				android:layout_width="match_parent"
+				android:layout_gravity="bottom"
 				android:minHeight="48dip"
-				android:singleLine="false" />
+				android:hint="@string/hint_description"
+				android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
+				style="@style/TextAppearance.EditEvent_Value"
+				android:imeOptions="actionDone" />
 		</com.google.android.material.textfield.TextInputLayout>
-		<View
-			style="@style/EditEventSeparator"/>
     </LinearLayout>
 
     <!-- WHEN - Read-only textview version of FROM/TO (below) -->
@@ -296,35 +293,12 @@
             android:gravity="end|center_vertical" />
     </LinearLayout>
 
-    <!-- ALL DAY -->
     <LinearLayout
-        android:id="@+id/all_day_row"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dip"
-        android:gravity="center_vertical"
-        android:minHeight="24dip"
-        android:orientation="horizontal">
-        <CheckBox
-            android:id="@+id/is_all_day"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dip"
-            android:layout_marginEnd="0dip"
-            android:contentDescription="@string/accessibility_all_day"
-            android:gravity="center_vertical" />
-        <TextView
-            android:id="@+id/is_all_day_label"
-            style="@style/TextAppearance.EditEvent_Small"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|start"
-            android:layout_marginStart="-6dip"
-            android:layout_weight="1"
-            android:gravity="center_vertical|start"
-            android:text="@string/edit_event_all_day_label" />
-    </LinearLayout>
+        android:layout_marginTop="6dip"
+        android:layout_marginBottom="6dip">
 
     <!-- TIME ZONE - Read-only textview version -->
     <LinearLayout
@@ -343,24 +317,98 @@
             android:layout_marginLeft="24dip"
             android:layout_marginRight="24dip" />
     </LinearLayout>
-
+    
     <!-- TIME ZONE - Read/write version with button to launch picker -->
     <LinearLayout
         android:id="@+id/timezone_button_row"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="48dip"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="-8dip"
+        android:layout_marginEnd="0dp"
+        android:layout_weight="7">
         <Button
             android:id="@+id/timezone_button"
-            style="@style/TextAppearance.EditEvent_SpinnerButton"
+            style="@style/TextAppearance.EditEvent_SpinnerButtonSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/accessibility_pick_time_zone"
             android:gravity="start|center_vertical" />
     </LinearLayout>
 
-
-    <View
-        style="@style/EditEventSeparator"/>
+    <!-- ALL DAY -->
+    <LinearLayout
+        android:id="@+id/all_day_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dip"
+        android:layout_marginBottom="20dip"
+        android:layout_marginLeft="12dip"
+        android:gravity="center_vertical"
+        android:minHeight="24dip"
+        android:orientation="horizontal"
+        android:layout_weight="4">
+        <CheckBox
+            android:id="@+id/is_all_day"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="6dip"
+            android:contentDescription="@string/accessibility_all_day"
+            android:gravity="center_vertical" />
+        <TextView
+            android:id="@+id/is_all_day_label"
+            style="@style/TextAppearance.EditEvent_Small"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="4dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/edit_event_all_day_label" />
+    </LinearLayout>
+    </LinearLayout>
+        
+    <!-- REMINDERS -->
+    <LinearLayout
+        android:id="@+id/reminders_row"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true">
+        <TextView
+            android:id="@+id/reminders_group_label"
+            android:text="@string/event_info_reminders_label"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dip"
+            style="@style/TextAppearance.EditEvent_LabelSmall" />
+        <LinearLayout
+            android:id="@+id/reminder_items_container"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="-8dip"
+            android:layout_marginBottom="8dip"
+            android:layout_marginEnd="8dip"
+            android:orientation="vertical" />
+        <Button
+            android:id="@+id/reminder_add"
+            android:text="@string/reminders_label"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="top"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="0dip"
+            android:layout_marginBottom="0dip"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="#FF777777"
+            android:minHeight="20dip"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/accessibility_add_reminder"
+            style="@style/TextAppearance.EditEvent_LabelSmall" />
+    </LinearLayout>
 </LinearLayout>

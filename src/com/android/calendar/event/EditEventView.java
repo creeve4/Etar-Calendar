@@ -1433,9 +1433,9 @@ public class EditEventView implements View.OnClickListener, DialogInterface.OnCa
                 setTime(mEndTimeButton, endMillis);
             }
 
-            mStartTimeButton.setVisibility(View.GONE);
-            mEndTimeButton.setVisibility(View.GONE);
-            mTimezoneRow.setVisibility(View.GONE);
+            mStartTimeButton.setVisibility(View.INVISIBLE);
+            mEndTimeButton.setVisibility(View.INVISIBLE);
+            mTimezoneRow.setVisibility(View.INVISIBLE);
         } else {
             if (mEndTime.hour == 0 && mEndTime.minute == 0) {
                 if (mAllDay != isChecked) {

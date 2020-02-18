@@ -124,23 +124,8 @@ public class CalendarToolbarHandler {
         long julianDay = Time.getJulianDay(mMilliTime, t.gmtoff);
         String dayOfWeek;
         mStringBuilder.setLength(0);
-
-        if (julianDay == mTodayJulianDay) {
-            dayOfWeek = mContext.getString(R.string.agenda_today,
-                    DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
-                            DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString());
-        } else if (julianDay == mTodayJulianDay - 1) {
-            dayOfWeek = mContext.getString(R.string.agenda_yesterday,
-                    DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
-                            DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString());
-        } else if (julianDay == mTodayJulianDay + 1) {
-            dayOfWeek = mContext.getString(R.string.agenda_tomorrow,
-                    DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
-                            DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString());
-        } else {
             dayOfWeek = DateUtils.formatDateRange(mContext, mFormatter, mMilliTime, mMilliTime,
                     DateUtils.FORMAT_SHOW_WEEKDAY, mTimeZone).toString();
-        }
         return dayOfWeek;
     }
 

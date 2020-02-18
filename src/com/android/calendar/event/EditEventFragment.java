@@ -132,7 +132,7 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
     private long mCalendarId = -1;
     private EventColorPickerDialog mColorPickerDialog;
     private AppCompatActivity mContext;
-    private boolean mSaveOnDetach = true;
+    private boolean mSaveOnDetach = false;
     private boolean mIsReadOnly = false;
     private boolean mShowColorPalette = false;
     private boolean mTimeSelectedWasStartTime;
@@ -310,7 +310,7 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
         mInputMethodManager = (InputMethodManager)
                 activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        mUseCustomActionBar = !Utils.getConfigBool(mContext, R.bool.multiple_pane_config);
+        mUseCustomActionBar = Utils.getConfigBool(mContext, R.bool.multiple_pane_config);
     }
 
     @Override
@@ -322,6 +322,8 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
             view = inflater.inflate(R.layout.edit_event_single_column, null);
         } else {
             view = inflater.inflate(R.layout.edit_event, null);
+            View doneActionView = view.findViewById(R.id.action_done);
+            doneActionView.setOnClickListener(mActionBarListener);
         }
         mView = new EditEventView(mContext, view, mOnDone, mTimeSelectedWasStartTime,
                 mDateSelectedWasStartDate);
@@ -339,10 +341,6 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
         if (mUseCustomActionBar) {
             View actionBarButtons = inflater.inflate(R.layout.edit_event_custom_actionbar,
                     new LinearLayout(mContext), false);
-            View cancelActionView = actionBarButtons.findViewById(R.id.action_cancel);
-            cancelActionView.setOnClickListener(mActionBarListener);
-            View doneActionView = actionBarButtons.findViewById(R.id.action_done);
-            doneActionView.setOnClickListener(mActionBarListener);
             ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
             mContext.getSupportActionBar().setCustomView(actionBarButtons, layout);
         }
@@ -578,7 +576,6 @@ public class EditEventFragment extends Fragment implements EventHandler, OnColor
         if (act !=null && (Build.VERSION.SDK_INT < 23 ||
                     ContextCompat.checkSelfPermission(EditEventFragment.this.getActivity(),
                         Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED))
-            act.finish();
         super.onPause();
     }
 

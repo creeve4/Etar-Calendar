@@ -189,7 +189,7 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
             private static int mOnDownDelay;
             private static float GRID_LINE_LEFT_MARGIN = 0;
             // This is the standard height of an allday event with no restrictions
-            private static int SINGLE_ALLDAY_HEIGHT = 34;
+            private static int SINGLE_ALLDAY_HEIGHT = 22;
     /**
      * This is the minimum desired height of a allday event.
      * When unexpanded, allday events will use this height.
@@ -208,9 +208,9 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
              * The expanded allDay region can't expand into this.
              */
             private static int MIN_HOURS_HEIGHT = 180;
-            private static int ALLDAY_TOP_MARGIN = 1;
+            private static int ALLDAY_TOP_MARGIN = 0;
             // The largest a single allDay event will become.
-            private static int MAX_HEIGHT_OF_ONE_ALLDAY_EVENT = 34;
+            private static int MAX_HEIGHT_OF_ONE_ALLDAY_EVENT = 23;
             private static int HOURS_TOP_MARGIN = 2;
             private static int HOURS_LEFT_MARGIN = 2;
             private static int HOURS_RIGHT_MARGIN = 4;

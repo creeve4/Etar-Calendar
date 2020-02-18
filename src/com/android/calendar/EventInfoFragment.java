@@ -1091,12 +1091,6 @@ public class EventInfoFragment extends DialogFragment implements OnCheckedChange
             mDeleteHelper.setOnDismissListener(createDeleteOnDismissListener());
             mDeleteDialogVisible = true;
             mDeleteHelper.delete(mStartMillis, mEndMillis, mEventId, -1, onDeleteRunnable);
-        } else if (itemId == R.id.info_action_change_color) {
-            showEventColorPickerDialog();
-        } else if (itemId == R.id.info_action_share_event) {
-            shareEvent(ShareType.INTENT);
-        } else if (itemId == R.id.info_action_export) {
-            shareEvent(ShareType.SDCARD);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -1783,7 +1777,6 @@ public class EventInfoFragment extends DialogFragment implements OnCheckedChange
         }
         MenuItem delete = mMenu.findItem(R.id.info_action_delete);
         MenuItem edit = mMenu.findItem(R.id.info_action_edit);
-        MenuItem changeColor = mMenu.findItem(R.id.info_action_change_color);
         if (delete != null) {
             delete.setVisible(mCanModifyCalendar);
             delete.setEnabled(mCanModifyCalendar);
@@ -1791,10 +1784,6 @@ public class EventInfoFragment extends DialogFragment implements OnCheckedChange
         if (edit != null) {
             edit.setVisible(mCanModifyEvent);
             edit.setEnabled(mCanModifyEvent);
-        }
-        if (changeColor != null && mColors != null && mColors.length > 0) {
-            changeColor.setVisible(mCanModifyCalendar);
-            changeColor.setEnabled(mCanModifyCalendar);
         }
     }
 
