@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Etar-Calendar.iml" filepath="$PROJECT_DIR$/Etar-Calendar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/external/calendar/calendar.iml" filepath="$PROJECT_DIR$/external/calendar/calendar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/external/chips/chips.iml" filepath="$PROJECT_DIR$/external/chips/chips.iml" />
-      <module fileurl="file://$PROJECT_DIR$/external/colorpicker/colorpicker.iml" filepath="$PROJECT_DIR$/external/colorpicker/colorpicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/external/datetimepicker/datetimepicker.iml" filepath="$PROJECT_DIR$/external/datetimepicker/datetimepicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/external/external.iml" filepath="$PROJECT_DIR$/external/external.iml" />
-      <module fileurl="file://$PROJECT_DIR$/external/timezonepicker/timezonepicker.iml" filepath="$PROJECT_DIR$/external/timezonepicker/timezonepicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Etar-Calendar.iml" filepath="$PROJECT_DIR$/Etar-Calendar.iml" group="Etar-Calendar" />
+      <module fileurl="file://$PROJECT_DIR$/external/calendar/calendar.iml" filepath="$PROJECT_DIR$/external/calendar/calendar.iml" group="Etar-Calendar/external/calendar" />
+      <module fileurl="file://$PROJECT_DIR$/external/chips/chips.iml" filepath="$PROJECT_DIR$/external/chips/chips.iml" group="Etar-Calendar/external/chips" />
+      <module fileurl="file://$PROJECT_DIR$/external/colorpicker/colorpicker.iml" filepath="$PROJECT_DIR$/external/colorpicker/colorpicker.iml" group="Etar-Calendar/external/colorpicker" />
+      <module fileurl="file://$PROJECT_DIR$/external/datetimepicker/datetimepicker.iml" filepath="$PROJECT_DIR$/external/datetimepicker/datetimepicker.iml" group="Etar-Calendar/external/datetimepicker" />
+      <module fileurl="file://$PROJECT_DIR$/external/external.iml" filepath="$PROJECT_DIR$/external/external.iml" group="Etar-Calendar/external" />
+      <module fileurl="file://$PROJECT_DIR$/external/timezonepicker/timezonepicker.iml" filepath="$PROJECT_DIR$/external/timezonepicker/timezonepicker.iml" group="Etar-Calendar/external/timezonepicker" />
     </modules>
   </component>
 </project>
